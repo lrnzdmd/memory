@@ -1,0 +1,18 @@
+header {
+    display: flex;
+    gap:2em;
+    justify-content: space-between;
+}
+
+header h1 {
+    background-color: #0B5394; 
+    border: 1px solid #FFFFFF; 
+    border-radius: 5px; 
+    padding: 0.2em;
+    text-align: center;
+    min-width: 10em;
+    margin: 1em;
+    align-self: center;
+    font-size:3em;
+
+}

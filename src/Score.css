@@ -1,0 +1,14 @@
+.score {
+    background-color: #0B5394; 
+    border: 1px solid #FFFFFF; 
+    border-radius: 5px; 
+    align-self: end;
+    margin:2em;
+    font-size: 1.2em;
+    padding: 1em;
+    min-width: 10em;
+}
+
+.score h2 {
+    margin:0;
+}
