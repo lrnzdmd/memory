@@ -1,11 +1,11 @@
 import Card from "./Card";
 import "./CardsList.css";
 
-function CardsList({data}) {
+function CardsList({data, clickCard}) {
     
     return (
         <section>
-            {data.map(character => (<Card key={character.id} data={character}></Card>))}
+            {data.map(character => (<Card key={character.id} data={character} clickCard={clickCard}></Card>))}
         </section>
     )
 }

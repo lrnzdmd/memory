@@ -10,6 +10,7 @@ function App() {
   const [data, setData] = useState([]);
   const [score, setScore] = useState({score:0, hiscore:0});
   const dataRef = useRef(data);
+  const [clickedIds, setClickedIds] = useState([]);
 
 
   useEffect(() => {
@@ -20,8 +21,6 @@ function App() {
     loadData();
 
     window.addEventListener("keydown", betterCards);
-    window.addEventListener("keydown", shuffle);
-
     
   }, []);
 
@@ -30,10 +29,34 @@ function App() {
 
   }, [data]);
 
- function shuffle(event) {
-  if (event.key === "Q") {
-    setData(shuffleArray(dataRef.current));
+  useEffect(() => {
+    if (score.score > score.hiscore) {
+      setScore(prevScore => ({...prevScore, hiscore: prevScore.score}));
+    }
+
+  }, [score]);
+
+  const clickCard = (event) => {
+    
+    console.log(clickedIds);
+    const id = event.target.dataset.id;
+    if (!clickedIds.includes(id)) {
+      setClickedIds(ls => [...ls, id])
+      shuffle();
+      setScore(prevScore => ({ ...prevScore, score: prevScore.score + 1 }));
+    } else {
+      const empty = [];
+      shuffle();
+      setClickedIds(empty)
+      setScore(prevScore => ({...prevScore, score: 0}));
+    }
+    
   }
+
+ function shuffle() {
+   
+    setData(shuffleArray(dataRef.current));
+ 
  }
 
   function betterCards(event) {
@@ -48,10 +71,10 @@ function App() {
     const shuffled = [...array];
     
     for (let i = shuffled.length - 1; i > 0; i--) {
-      // Genera un indice casuale
+      
       const j = Math.floor(Math.random() * (i + 1));
       
-      // Scambia gli elementi
+     
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
     
@@ -63,7 +86,7 @@ function App() {
     <>
       <main>
         <Header score={score}></Header>
-        <CardsList data={data}></CardsList>
+        <CardsList data={data} clickCard={clickCard}></CardsList>
       </main>
     </>
   );
