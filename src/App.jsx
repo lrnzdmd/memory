@@ -8,6 +8,7 @@ import Header from "./Header";
 
 function App() {
   const [data, setData] = useState([]);
+  const [score, setScore] = useState({score:0, hiscore:0});
 
   useEffect(() => {
     async function loadData() {
@@ -28,7 +29,7 @@ function App() {
     <>
       <main>
         <Header></Header>
-        <CardsList></CardsList>
+        <CardsList data={data}></CardsList>
       </main>
     </>
   );
