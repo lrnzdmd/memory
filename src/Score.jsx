@@ -1,10 +1,10 @@
 import "./Score.css";
 
-function Score() {
+function Score({score}) {
     return (
         <div className="score">
-            <h2>Score: </h2>
-            <h2>Hi-Score: </h2>
+            <h2>Score: {score.score} </h2>
+            <h2>Hi-Score: {score.hiscore}</h2>
         </div>
     )
 }
